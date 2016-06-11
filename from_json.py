@@ -95,7 +95,7 @@ class JSONParser(object):
                 raise Exception('ParseError: key is not a string ' + token)
             result[eval(k)] = self.get_object_from_string(v)
 
-            return result
+        return result
 
     def is_valid_key(self, s):
         l = len(s)
@@ -109,9 +109,15 @@ class JSONParser(object):
 
 
 if __name__ == '__main__':
-    j = JSONParser()
-    json = ""
-    with open('json_data') as f:
-        json = f.read()
-    h = j.get_object_from_string(json)
-    print(h)
+    from minitest import *
+    parser = JSONParser()
+
+    json1 = "[   {    } , {  }  ]"
+    json2 = "[   {  \"test \": 1  } , {  }  ]"
+	json3 = "[   { 'hmm': ['this is a long string', '  again', 'goo']   } , {  }  ]"
+	json4 = '[{"state": {"cities": ["Mumbai", "Pune", "Nagpur", "Bhusaval", "Jalgaon"], "name": "Maharashtra"}}, {"state": {"cities": ["Bangalore", "Hubli"], "name": "Karnataka"}}, {"state": {"states": ["Raipur", "Durg"], "name": "Chhattisgarh"}}]'
+
+    result1 = parser.get_object_from_string(json1)
+    result2 = parser.get_object_from_string(json2)
+    result3 = parser.get_object_from_string(json3)
+    result4 = parser.get_object_from_string(json4)
