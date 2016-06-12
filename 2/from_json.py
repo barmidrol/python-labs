@@ -1,7 +1,4 @@
 class JSONParser(object):
-    def __init__(self):
-        pass
-
     def get_tokens(self, s, delim = ","):
     	string_started = False
     	dict_count = 0
